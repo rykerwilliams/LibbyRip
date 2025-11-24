@@ -51,7 +51,7 @@ def bake_metadata(workingDir, progress_callback=None):
 
     authorName = "Unknown"
     for creator in metadata["creator"]:
-        if creator["role"] == "author":
+        if "author" in creator["role"]:
             authorName = creator["name"]
 
     chapters = {}
