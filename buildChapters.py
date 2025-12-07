@@ -64,11 +64,25 @@ class Metadata:
             creator["role"]: creator["name"]
             for creator in metadata["creator"]
         }
+        
+        author = contributors.get("author")
+        narrator = contributors.get("narrator")
+
+        # New combined key
+        both = contributors.get("author and narrator")
+
+        if both:
+            # Only fill missing old fields, don't overwrite explicit values
+            if not author:
+                author = both
+            if not narrator:
+                narrator = both
+
 
         return Metadata(
             title=metadata["title"],
-            narrator=contributors.get("narrator"),
-            author=contributors.get("author"),
+            narrator=narrator,
+            author=author,
             total_duration=timedelta(
                 seconds=sum(spine["duration"] for spine in spines)
             ),
