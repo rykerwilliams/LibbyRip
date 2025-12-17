@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name          LibreGRAB
 // @namespace     http://tampermonkey.net/
-// @version       2025-11-18
+// @version       2025-12-17
 // @description   Download all the booty!
 // @author        PsychedelicPalimpsest
 // @license       MIT
@@ -128,9 +128,6 @@
         downloadElem.classList.add("foldMenu");
         downloadElem.setAttribute("tabindex", "-1"); // Don't mess with tab key
         document.body.appendChild(downloadElem);
-
-		initFFmpeg().catch(console.error);
-
     }
     function getUrls(){
         let ret = [];
@@ -517,6 +514,7 @@
         }
 
         buildPirateUi();
+		initFFmpeg().catch(console.error);
     }
 
 
