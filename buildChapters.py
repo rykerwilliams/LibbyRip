@@ -60,11 +60,20 @@ class Metadata:
             for chapter in chapters
         ]
 
-        contributors = {
-            creator["role"]: creator["name"]
-            for creator in metadata["creator"]
+        # Map role codes to full names
+        role_mapping = {
+            "aut": "author",
+            "nrt": "narrator",
+            "author": "author",
+            "narrator": "narrator",
         }
-        
+
+        contributors = {}
+        for creator in metadata["creator"]:
+            role_code = creator["role"]
+            full_role = role_mapping.get(role_code, role_code)
+            contributors[full_role] = creator["name"]
+
         author = contributors.get("author")
         narrator = contributors.get("narrator")
 
